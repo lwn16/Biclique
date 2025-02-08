@@ -24,7 +24,6 @@ public:
 
     std::vector<TransType> trans_type_list_;
     std::vector<std::vector<dp_t>> dp_cnt_;
-//  std::vector<std::vector<std::vector<dp_t>>> dp_sum_;
     std::vector<std::vector<dp_t>> dp_sum_;
     std::vector<int> left_pos_;
     std::vector<int> right_pos_;

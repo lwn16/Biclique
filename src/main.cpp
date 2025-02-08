@@ -41,8 +41,6 @@ int main(int argc, char **argv) {
     g.Trim(p, q);
     TIMERSTART(init);
 
-    // g.TrimButterfly(p, q, 0);
-
     uint64_t left_degree2 = 0, right_degree2 = 0;
     for (auto &i : g.left_neighbour_) {
         left_degree2 += static_cast<uint64_t>(i.size()) * i.size();
@@ -54,30 +52,18 @@ int main(int argc, char **argv) {
         std::swap(p, q);
         g.SwapLeftAndRight();
     }
-    std::cerr << left_degree2 << ' ' << right_degree2 << std::endl;
+    //std::cerr << left_degree2 << ' ' << right_degree2 << std::endl;
 
-    // class CountingIndexCmp {
-    // public:
-    //     auto operator()(const std::pair<CountingIndex, BiGraph>& a, const std::pair<CountingIndex, BiGraph> &b) -> bool {
-    //         return a.first.total_dp_ < b.first.total_dp_;
-    //     }
-    // };
-    // std::priority_queue<std::pair<CountingIndex, BiGraph>, std::vector<std::pair<CountingIndex, BiGraph>>, CountingIndexCmp> graph_queue;
     std::vector<CountingIndex> split_graphs;
-    // dp_t total_sample_weight = 0, certain_sample_weight = 0;
     std::vector<std::pair<int,int>> kappa_list;
     if (split){
         auto first_split_graphs = SplitLeft(g, p, q);
-        // std::vector<dp_t> dp_t_list;
         for (auto &g_i_wocolor : first_split_graphs) {
             BiGraphWithColor g_i(std::move(g_i_wocolor));
             auto res = color ? g_i.SetColor(p - 1, q) : g_i.SetDefaultColor(p - 1, q);
             g_i.ShuffleColor();
             CountingIndex index(BiGraphWithColor(g_i), p - 1, q);
-            // total_sample_weight += index.total_dp_;
-            // graph_queue.emplace(std::move(index), g_i);
             split_graphs.push_back(index);
-            // dp_t_list.push_back(index.total_dp_);
             kappa_list.emplace_back(res);
         }
     }
@@ -92,107 +78,29 @@ int main(int argc, char **argv) {
         }
     }
 
-    // std::sort(dp_t_list.begin(),dp_t_list.end());
-    // double lambda = 0.9;
-    // int lambda_pos = std::max(std::min((int)(dp_t_list.size()*lambda),(int)dp_t_list.size()-1),0);
-    // double lambda_bound = lambda_pos < dp_t_list.size() ? dp_t_list[lambda_pos] : 1e18;
-    // // std::cerr << "lambda : " << lambda_pos << " " << lambda_bound << std::endl;
-
-    // {
-    //     std::vector<CountingIndex> tmp;
-    //     for (int i = 0; i < (int)split_graphs.size(); i++){
-    //         if (split_graphs[i].total_dp_ > lambda_bound){
-    //             split_graphs[i].graph_.TrimButterfly(p - 1, q , 0);
-    //             if (split_graphs[i].graph_.edge_n_==0) continue;
-    //             split_graphs[i].graph_.SetColor(p - 1, q);
-    //             split_graphs[i].graph_.ShuffleColor();
-    //             CountingIndex index(std::move(split_graphs[i].graph_), p - 1, q);
-    //             tmp.push_back(std::move(index));
-    //         }
-    //         else{
-    //             tmp.push_back(std::move(split_graphs[i]));
-    //         }
-    //     }
-    //     std::swap(tmp,split_graphs);
-    // }
-
-    // while (!graph_queue.empty() && certain_sample_weight * 2 < total_sample_weight) {
-    //     auto index = graph_queue.top().first;
-    //     auto graph = graph_queue.top().second;
-    //     auto p = index.p_;
-    //     auto q = index.q_;
-    //     auto total_dp = index.total_dp_;
-    //     graph_queue.pop();
-
-    //     if (p == 1) {
-    //         certain_sample_weight += total_dp;
-    //         split_graphs.push_back(std::move(index));
-    //         continue;
-    //     }
-    //     total_sample_weight -= total_dp;
-
-    //     graph.SwapLeftAndRight();
-    //     std::swap(p, q);
-
-    //     auto split_results = SplitLeft(graph, p, q);
-    //     int sum_edge = 0;
-    //     for (auto &i : split_results) {
-    //         sum_edge += i.edge_n_;
-    //     }
-
-    //     for (auto &g_i_wocolor : split_results) {
-    //         BiGraphWithColor g_i(std::move(g_i_wocolor));
-    //         auto res = g_i.SetColor(p - 1, q);
-    //         g_i.ShuffleColor();
-    //         CountingIndex index(BiGraphWithColor(g_i), p - 1, q);
-    //         if (index.total_dp_ == 0) {
-    //             continue;
-    //         }
-    //         total_sample_weight += index.total_dp_;
-    //         if (sum_edge > graph.edge_n_) {
-    //             certain_sample_weight += index.total_dp_;
-    //             split_graphs.push_back(std::move(index));
-    //         } else {
-    //             graph_queue.emplace(std::move(index), std::move(g_i));
-    //         }
-    //     }
-
-    //     std::cerr << total_dp << ' ' << certain_sample_weight << ' ' << total_sample_weight << std::endl;
-    // }
-
-    // while (!graph_queue.empty()) {
-    //     split_graphs.push_back(graph_queue.top().first);
-    //     graph_queue.pop();
-    // }
-
-    // BiGraphWithColor g_color(g);
-    // g_color.SetColor(p, q);
-    // g_color.ShuffleColor();
-    // CountingIndex index(std::move(g_color), p, q);
-
     std::vector<dp_t> sample_indices;
     dp_t sum = 0;
     for (auto &i : split_graphs) {
         sample_indices.push_back(sum);
         sum += i.total_dp_;
-        std::cerr << i.p_ << ' ' << i.q_ << ' ' << i.graph_.left_n_ << ' ' << i.graph_.right_n_ << ' ' << i.total_dp_ << std::endl;
+        //std::cerr << i.p_ << ' ' << i.q_ << ' ' << i.graph_.left_n_ << ' ' << i.graph_.right_n_ << ' ' << i.total_dp_ << std::endl;
     }
-    std::cout << "sum: " << sum << std::endl;
+    // std::cout << "sum: " << sum << std::endl;
 
-    std::cerr << "num_split:" << (int)kappa_list.size() << std::endl;
-    int mxkL=0;
-    int mxkR=0;
-    int sumkL=0;
-    int sumkR=0;
-    for (auto [kappa_U,kappa_V]:kappa_list){
-        std::cerr << "kL,kR: "<< kappa_U << " " << kappa_V << std::endl;
-        mxkL=std::max(mxkL,kappa_U);
-        mxkR=std::max(mxkR,kappa_V);
-        sumkL+=kappa_U;
-        sumkR+=kappa_V;
-    }
-    std::cerr << (int)kappa_list.size() << std::endl;
-    std::cerr << mxkL << " " << mxkR << " " << sumkL << " " << sumkR << std::endl;
+    // std::cerr << "num_split:" << (int)kappa_list.size() << std::endl;
+    // int mxkL=0;
+    // int mxkR=0;
+    // int sumkL=0;
+    // int sumkR=0;
+    // for (auto [kappa_U,kappa_V]:kappa_list){
+    //     std::cerr << "kL,kR: "<< kappa_U << " " << kappa_V << std::endl;
+    //     mxkL=std::max(mxkL,kappa_U);
+    //     mxkR=std::max(mxkR,kappa_V);
+    //     sumkL+=kappa_U;
+    //     sumkR+=kappa_V;
+    // }
+    // std::cerr << (int)kappa_list.size() << std::endl;
+    // std::cerr << mxkL << " " << mxkR << " " << sumkL << " " << sumkR << std::endl;
 
     TIMEREND(init);
     DURATION_ms(init);
@@ -230,7 +138,8 @@ int main(int argc, char **argv) {
         TIMEREND(sample);
         DURATION_ms(sample);
 
-        std::cout << std::fixed << total / T << std::endl;
+        std::cout << "Runs " << test_id << ": ";
+        std::cout << std::fixed << total / T << std::endl << std::endl;
         results.push_back(total / T);
     }
     double average = 0, average_error = 0;
@@ -242,5 +151,6 @@ int main(int argc, char **argv) {
         average_error += fabs(i - average) / average;
     }
     average_error /= results.size();
-    std::cout << average << ' ' << average_error * 100 << std::endl;
+    std::cout << "average count: " << average << std::endl;
+    std::cout << "relative error to C_bar: " << average_error * 100 << std::endl;
 }

@@ -79,32 +79,7 @@ static auto CalcColor(int left_n,
 
 auto BiGraphWithColor::SetColor(int p, int q) -> std::pair<int, int> {
     left_color_ = CalcColor(left_n_, right_n_, q, left_neighbour_);
-    // std::iota(left_color_.begin(), left_color_.end(), 0);
-    // {
-    //     std::vector<int> order(left_n_);
-    //     std::iota(order.begin(), order.end(), 0);
-    //     std::sort(order.begin(), order.end(),
-    //         [&](int x,int y){
-    //             return left_neighbour_[x].size() < left_neighbour_[y].size();
-    //         }
-    //     );
-    //     left_color_.resize(left_n_);
-    //     for (int i = 0; i < left_n_; i++) left_color_[order[i]] = i;
-    // }
     right_color_ = CalcColor(right_n_, left_n_, p, right_neighbour_);
-    // std::iota(right_color_.begin(), right_color_.end(), 0);
-    // {
-    //     std::vector<int> order(right_n_);
-    //     std::iota(order.begin(), order.end(), 0);
-    //     std::sort(order.begin(), order.end(),
-    //         [&](int x,int y){
-    //             return right_neighbour_[x].size() < right_neighbour_[y].size();
-    //         }
-    //     );
-    //     right_color_.resize(right_n_);
-    //     for (int i = 0; i < right_n_; i++) right_color_[order[i]] = i;
-    // }
-
     return {*std::max_element(left_color_.begin(), left_color_.end()) + 1,
             *std::max_element(right_color_.begin(), right_color_.end()) + 1};
 }

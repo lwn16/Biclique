@@ -6,11 +6,6 @@ This repository contains C++ codes and datasets for the paper:
 
 Note that we have compared our method with the BCList++, [EPivoter](https://github.com/LightWant/biclique/), and [EP/Zz++](https://github.com/LightWant/biclique/) , where EPivoter and EP/Zz++ are open-source. The implementation of BCList++ is obtained from https://github.com/LightWant/biclique/.
 
-### 📚 Introduction
-
-
-
-
 ### 🚀 Quick Start
 #### 1. Environment requirements
 

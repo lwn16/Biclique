@@ -17,8 +17,6 @@ public:
 
     virtual void Trim(int p, int q);
 
-    // virtual void TrimButterfly(int p, int q,int dep);
-
 public:
     int left_n_;
     int right_n_;

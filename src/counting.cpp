@@ -103,7 +103,6 @@ CountingIndex::CountingIndex(BiGraphWithColor &&graph, int p, int q)
     }
 
     dp_cnt_.resize(length_, std::vector<dp_t>(graph_.edge_n_));
-//    dp_sum_.resize(length_ - 1);
 
     for (int i = 0; i < graph_.edge_n_; i++) {
         dp_cnt_[0][i] = 1;
