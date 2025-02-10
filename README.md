@@ -57,13 +57,13 @@ Please take a look at the real-world datasets used in our experiments using the 
 
 
 | Dataset (Abbr.)         | Download link                                                |
-| ----------------------- | ------------------------------------------------------------ |
-| github (GH)             | [Link](http://konect.cc/networks/github/)         |
-| StackOF (SO)            | [Link](http://konect.cc/networks/stackexchange-stackoverflow/)           |
-| Twitter (Wut)           | [Link](http://konect.cc/networks/munmun_twitterex_ut/) |
+| :---------------------- | ------------------------------------------------------------ |
+| github (GH)             | [Link](http://konect.cc/networks/github/)                    |
+| StackOF (SO)            | [Link](http://konect.cc/networks/stackexchange-stackoverflow/) |
+| Twitter (Wut)           | [Link](http://konect.cc/networks/munmun_twitterex_ut/)       |
 | IMDB (IMDB)             | [Link](http://konect.cc/networks/komarix-imdb/)              |
-| Actor2 (Actor2)         | [Link](http://konect.cc/networks/actor2/)             |
-| Amazon (AR)             | [Link](http://konect.cc/networks/amazon-ratings/)       |
-| DBLP (DBLP)             | [Link](http://konect.cc/networks/dblp-author/)            |
-| Epinions (ER)           | [Link](http://konect.cc/networks/epinions-rating/)         |
+| Actor2 (Actor2)         | [Link](http://konect.cc/networks/actor2/)                    |
+| Amazon (AR)             | [Link](http://konect.cc/networks/amazon-ratings/)            |
+| DBLP (DBLP)             | [Link](http://konect.cc/networks/dblp-author/)               |
+| Epinions (ER)           | [Link](http://konect.cc/networks/epinions-rating/)           |
 | Wikipedia-edits-de (DE) | [Link](http://konect.cc/networks/edit-dewiki/)               |
