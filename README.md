@@ -57,7 +57,7 @@ Please take a look at the real-world datasets used in our experiments using the 
 
 
 | Dataset (Abbr.)         | Download link                                                |
-| ----------------------- | ------------------------------------------------------------ |
+| :---------------------- | ------------------------------------------------------------ |
 | github (GH)             | [Link](http://konect.cc/networks/github/)         |
 | StackOF (SO)            | [Link](http://konect.cc/networks/stackexchange-stackoverflow/)           |
 | Twitter (Wut)           | [Link](http://konect.cc/networks/munmun_twitterex_ut/) |
