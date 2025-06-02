@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
         auto first_split_graphs = SplitLeft(g, p, q);
         for (auto &g_i_wocolor : first_split_graphs) {
             BiGraphWithColor g_i(std::move(g_i_wocolor));
-            auto res = color ? g_i.SetColor(p - 1, q) : g_i.SetDefaultColor(p - 1, q);
+            auto res = color ? g_i.SetColor(p - 1, q, color) : g_i.SetDefaultColor(p - 1, q);
             g_i.ShuffleColor();
             CountingIndex index(BiGraphWithColor(g_i), p - 1, q);
             split_graphs.push_back(index);
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
     else{
         {
             BiGraphWithColor g_i(std::move(g));
-            auto res = color ? g_i.SetColor(p, q) : g_i.SetDefaultColor(p, q);
+            auto res = color ? g_i.SetColor(p, q, color) : g_i.SetDefaultColor(p, q);
             g_i.ShuffleColor();
             CountingIndex index(BiGraphWithColor(g_i), p, q);
             split_graphs.push_back(index);

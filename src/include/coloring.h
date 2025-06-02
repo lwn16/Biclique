@@ -10,7 +10,7 @@ public:
     BiGraphWithColor& operator = (BiGraphWithColor &&) = default;
 
     void ClearColor();
-    auto SetColor(int p, int q) -> std::pair<int, int>;
+    auto SetColor(int p, int q, int color_mode) -> std::pair<int, int>;
     auto SetDefaultColor(int p, int q) -> std::pair<int, int>;
     void ShuffleColor();
 

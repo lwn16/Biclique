@@ -38,15 +38,15 @@ cd build && cmake .. && make
 
 ``` -T [INT] ``` : the sampling size.
 
-``` -color [INT] ``` : 1 for running CBS method and 0 for running BS method.
+``` -color [INT] ``` : 0 for running BS method, 1 for running CBS method (**default setting**), 2 for running ACBS method, 3 for running DCBS method.
 
 ###  📊 Run
-Run the main experiment (**Section 5.1**) on `toydata.txt` by the following command:
+Run the main experiment (**Section 5.2**) on `toydata.txt` by the following command:
 ```
 ./build/app -f ./datasets/toydata.txt -p 3 -q 2 -test_sets 10 -T 100000 -color 1 > results/outToydata 2> results/logToydata
 ```
 
-Run the Ablation Study experiment (**Section A.1**) on `toydata.txt` by the following command:
+Run the Ablation Study experiment (**Section 6.1**) on `toydata.txt` by the following command:
 ```
 ./build/app -f ./datasets/toydata.txt -p 3 -q 2 -test_sets 10 -T 100000 -color 0 > results/outToydata 2> results/logToydata
 ```
@@ -57,13 +57,13 @@ Please take a look at the real-world datasets used in our experiments using the 
 
 
 | Dataset (Abbr.)         | Download link                                                |
-| :---------------------- | ------------------------------------------------------------ |
-| github (GH)             | [Link](http://konect.cc/networks/github/)                    |
-| StackOF (SO)            | [Link](http://konect.cc/networks/stackexchange-stackoverflow/) |
-| Twitter (Wut)           | [Link](http://konect.cc/networks/munmun_twitterex_ut/)       |
+| ----------------------- | ------------------------------------------------------------ |
+| github (GH)             | [Link](http://konect.cc/networks/github/)         |
+| StackOF (SO)            | [Link](http://konect.cc/networks/stackexchange-stackoverflow/)           |
+| Twitter (Wut)           | [Link](http://konect.cc/networks/munmun_twitterex_ut/) |
 | IMDB (IMDB)             | [Link](http://konect.cc/networks/komarix-imdb/)              |
-| Actor2 (Actor2)         | [Link](http://konect.cc/networks/actor2/)                    |
-| Amazon (AR)             | [Link](http://konect.cc/networks/amazon-ratings/)            |
-| DBLP (DBLP)             | [Link](http://konect.cc/networks/dblp-author/)               |
-| Epinions (ER)           | [Link](http://konect.cc/networks/epinions-rating/)           |
+| Actor2 (Actor2)         | [Link](http://konect.cc/networks/actor2/)             |
+| Amazon (AR)             | [Link](http://konect.cc/networks/amazon-ratings/)       |
+| DBLP (DBLP)             | [Link](http://konect.cc/networks/dblp-author/)            |
+| Epinions (ER)           | [Link](http://konect.cc/networks/epinions-rating/)         |
 | Wikipedia-edits-de (DE) | [Link](http://konect.cc/networks/edit-dewiki/)               |
